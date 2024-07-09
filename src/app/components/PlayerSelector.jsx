@@ -11,10 +11,12 @@ const PlayerSelector = () => {
     setCurrentPlayerIndex((prevIndex) => (prevIndex + 1) % playersArray.length);
   };
 
+  const otherPlayers = playersArray.filter((_, index) => index !== currentPlayerIndex);
+
   return (
     <div className="mb-6 p-4 bg-white rounded-lg shadow-md">
       <h2 className="text-xl text-black font-bold mb-4">בחוץ</h2>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between mb-4">
         <select 
           value={currentPlayerIndex}
           onChange={(e) => setCurrentPlayerIndex(Number(e.target.value))}
@@ -28,12 +30,20 @@ const PlayerSelector = () => {
         </select>
         <button 
           onClick={nextPlayer}
-          className="bg-blue-500 m-3 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
           הבא
         </button>
       </div>
-      <p className="mt-4 text-lg">Current player: <strong>{playersArray[currentPlayerIndex]}</strong></p>
+      <div className="mt-4">
+        {/* <p className="text-lg text-black">Current player: <strong>{playersArray[currentPlayerIndex]}</strong></p> */}
+        <p className="text-md text-black mt-2">משחקים:</p>
+        <ul className="list-disc text-black list-inside">
+          {otherPlayers.map((player, index) => (
+            <li key={index} className="ml-4">{player}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
