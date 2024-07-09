@@ -1,11 +1,14 @@
+// pages/index.js or app/page.js (depending on your Next.js version)
 import Card from "./components/Card";
+import PlayerSelector from "./components/PlayerSelector";
 import { playersArray } from "./Players";
 
 export default function Home() {
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="flex flex-col items-center min-h-screen bg-gray-100 py-8">
+      <PlayerSelector />
       <div className="flex flex-wrap justify-center">
-      {playersArray.map((player, index) => (
+        {playersArray.map((player, index) => (
           <Card key={index} name={player} />
         ))}
       </div>
